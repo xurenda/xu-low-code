@@ -1,0 +1,26 @@
+{
+  "name": "@xulc/engine",
+  "version": "0.0.1",
+  "description": "低代码，无代码平台",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@xulc/types": "workspace:*",
+    "@xulc/utils": "workspace:*"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "low-code",
+    "no-code",
+    "低代码",
+    "无代码"
+  ],
+  "author": "xurenda <xurenda@qq.com>",
+  "license": "ISC"
+}

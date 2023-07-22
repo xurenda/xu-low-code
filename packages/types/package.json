@@ -1,0 +1,25 @@
+{
+  "name": "@xulc/types",
+  "version": "0.0.1",
+  "description": "低代码，无代码平台",
+  "type": "module",
+  "main": "types/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "low-code",
+    "no-code",
+    "低代码",
+    "无代码"
+  ],
+  "author": "xurenda <xurenda@qq.com>",
+  "license": "ISC"
+}
