@@ -9,13 +9,16 @@
     "prepublishOnly": "pnpm run build"
   },
   "peerDependencies": {
+    "@xulc/engine": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "vite-plugin-dts": "^3.3.1"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "low-code",
     "no-code",

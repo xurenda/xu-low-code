@@ -12,7 +12,7 @@ class LcMaterial extends WithSchema<LcMaterialMetaR> {
     this._name = meta.name
     this._componentMap = new Map()
     if (meta.components?.length) {
-      this.addComponents(meta.components)
+      this.addComponents(...meta.components)
     }
     this.title = meta.title || ''
   }
@@ -33,20 +33,14 @@ class LcMaterial extends WithSchema<LcMaterialMetaR> {
     return this._componentMap
   }
 
-  addComponents(components: LcComponentSchema | LcComponentSchema[]) {
-    if (!Array.isArray(components)) {
-      components = [components]
-    }
+  addComponents(...components: LcComponentSchema[]) {
     for (const component of components) {
       const _component = new LcComponent(component, this.name)
       this._componentMap.set(_component.name, _component)
     }
   }
 
-  removeComponents(componentNames: string | string[]) {
-    if (!Array.isArray(componentNames)) {
-      componentNames = [componentNames]
-    }
+  removeComponents(...componentNames: string[]) {
     for (const name of componentNames) {
       this._componentMap.delete(name)
     }

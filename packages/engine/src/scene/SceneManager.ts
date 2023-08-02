@@ -22,9 +22,10 @@ class LcSceneManager {
     }
   }
 
-  addScene(scene: LcSceneSchema) {
+  addScene(scene: LcSceneSchema): LcScene {
     const _scene = new LcScene(scene)
     this._sceneMap.set(_scene.id, _scene)
+    return _scene
   }
 
   removeScene(id: string) {

@@ -1,8 +1,8 @@
 export type LcNodeDefaultProps = Record<string, any>
 
 export interface LcNodeSchema<P extends LcNodeDefaultProps = LcNodeDefaultProps> {
-  name: string
   materialName: string
+  componentName: string
   title?: string
   hidden?: boolean
   locked?: boolean
@@ -12,8 +12,8 @@ export interface LcNodeSchema<P extends LcNodeDefaultProps = LcNodeDefaultProps>
 
 export interface LcNodeSchemaR<P extends LcNodeDefaultProps = LcNodeDefaultProps> {
   readonly id: string
-  readonly name: string
   readonly materialName: string
+  readonly componentName: string
   title: string
   hidden: boolean
   locked: boolean

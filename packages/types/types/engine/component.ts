@@ -1,14 +1,21 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, FunctionComponent, ComponentClass } from 'react'
+import { LcNodeDefaultProps } from '.'
 
-export interface LcComponentSchema {
+export type LcComponentDefaultComp<P = LcNodeDefaultProps> =
+  | string
+  | FunctionComponent<P>
+  | ComponentClass<P, any>
+  | ((props: P) => ReactNode)
+
+export interface LcComponentSchema<Comp = LcComponentDefaultComp> {
   name: string
   title?: string
-  component: ReactNode
+  comp: Comp
 }
 
-export interface LcComponentSchemaR {
+export interface LcComponentSchemaR<Comp = LcComponentDefaultComp> {
   readonly materialName: string
   readonly name: string
   title: string
-  readonly component: ReactNode
+  readonly comp: Comp
 }

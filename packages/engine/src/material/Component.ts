@@ -1,19 +1,18 @@
-import type { LcComponentSchema, LcComponentSchemaR } from '@xulc/types'
-import type { ReactNode } from 'react'
+import type { LcComponentDefaultComp, LcComponentSchema, LcComponentSchemaR } from '@xulc/types'
 import WithSchema from '../WithSchema'
 
-class LcComponent extends WithSchema<LcComponentSchemaR> {
+class LcComponent<Comp = LcComponentDefaultComp> extends WithSchema<LcComponentSchemaR<Comp>> {
   private readonly _materialName: string
   private readonly _name: string
-  private readonly _component: ReactNode
+  private readonly _comp: Comp
   title: string
 
-  constructor(meta: LcComponentSchema, materialName: string) {
+  constructor(meta: LcComponentSchema<Comp>, materialName: string) {
     super()
     this._materialName = materialName
     this._name = meta.name
     this.title = meta.title || ''
-    this._component = meta.component
+    this._comp = meta.comp
   }
 
   get schema() {
@@ -21,7 +20,7 @@ class LcComponent extends WithSchema<LcComponentSchemaR> {
       materialName: this.materialName,
       name: this.name,
       title: this.title,
-      component: this.component,
+      comp: this.comp,
     }
   }
 
@@ -33,8 +32,8 @@ class LcComponent extends WithSchema<LcComponentSchemaR> {
     return this._name
   }
 
-  get component() {
-    return this._component
+  get comp() {
+    return this._comp
   }
 }
 

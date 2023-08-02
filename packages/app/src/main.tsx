@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client'
 import App from './App/index'
 import './global.scss'
 import initEngine from './initEngine'
+import GlobalContext from './context'
 
-initEngine()
+const engine = initEngine()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <GlobalContext.Provider value={{ engine }}>
+      <App />
+    </GlobalContext.Provider>
   </React.StrictMode>,
 )

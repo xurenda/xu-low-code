@@ -1,15 +1,20 @@
 import { guid } from '@xulc/utils'
-import type { LcNodeDefaultProps, LcNodeSchema, LcNodeSchemaR } from '@xulc/types'
+import type {
+  LcComponentDefaultComp,
+  LcNodeDefaultProps,
+  LcNodeSchema,
+  LcNodeSchemaR,
+} from '@xulc/types'
 import WithSchema from '../WithSchema'
-import { ReactNode } from 'react'
+import engineGlobalStore from '../store'
 
-class LcNode<P extends LcNodeDefaultProps = LcNodeDefaultProps> extends WithSchema<
-  LcNodeSchemaR<P>
-> {
+class LcNode<
+  Comp = LcComponentDefaultComp,
+  P extends LcNodeDefaultProps = LcNodeDefaultProps,
+> extends WithSchema<LcNodeSchemaR<P>> {
   private readonly _id: string
-  private readonly _name: string
+  private readonly _componentName: string
   private readonly _materialName: string
-  private readonly _component: ReactNode
   title: string
   hidden: boolean
   locked: boolean
@@ -19,7 +24,7 @@ class LcNode<P extends LcNodeDefaultProps = LcNodeDefaultProps> extends WithSche
   constructor(node: LcNodeSchema<P>) {
     super()
     this._id = `n_${guid()}`
-    this._name = node.name
+    this._componentName = node.componentName
     this._materialName = node.materialName
     // this._component = node.component
     this.title = node.title || ''
@@ -33,7 +38,7 @@ class LcNode<P extends LcNodeDefaultProps = LcNodeDefaultProps> extends WithSche
   get schema(): LcNodeSchemaR<P> {
     return {
       id: this.id,
-      name: this.name,
+      componentName: this.componentName,
       materialName: this.materialName,
       title: this.title,
       hidden: this.hidden,
@@ -47,12 +52,19 @@ class LcNode<P extends LcNodeDefaultProps = LcNodeDefaultProps> extends WithSche
     return this._id
   }
 
-  get name() {
-    return this._name
+  get componentName() {
+    return this._componentName
   }
 
   get materialName() {
     return this._materialName
+  }
+
+  get comp(): Comp | null {
+    return (
+      engineGlobalStore.engine.material.getComponent<Comp>(this.materialName, this.componentName)
+        ?.comp ?? null
+    )
   }
 }
 
